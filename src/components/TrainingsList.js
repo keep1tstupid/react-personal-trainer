@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { AgGridReact } from 'ag-grid-react';
+import moment from 'moment';
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.css';
@@ -16,6 +17,14 @@ const TrainingsList = () => {
       .catch(err => console.error(err));
   }
 
+  const processedData = trainings.map((training) => {
+      training.date = moment(training.date).format('LLL');
+      const customerName = training.customer.firstname + " " + training.customer.lastname;
+      training.customerName = customerName;
+      console.log(customerName);
+    }
+  );
+
 // Training contains following attributes:
 // •id (long)
 // •date (Date)
@@ -27,7 +36,7 @@ const TrainingsList = () => {
     {headerName: 'Date', field: 'date', sortable: true, filter: true},
     {headerName: 'Duration', field: 'duration', sortable: true, filter: true},
     {headerName: 'Activity', field: 'activity', sortable: true, filter: true},
-    {headerName: 'Customer', field: 'customer', sortable: true, filter: true},
+    {headerName: 'Customer', field: 'customerName', sortable: true, filter: true},
   ];
 
   return (

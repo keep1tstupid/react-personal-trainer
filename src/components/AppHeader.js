@@ -1,6 +1,7 @@
 import React from 'react'
 import { Container, Navbar, Nav } from 'react-bootstrap';
 import { Link } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.css';
 
 const AppHeader = () => (
   <div>

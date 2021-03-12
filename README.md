@@ -10,3 +10,10 @@ Personal Trainer company needs front end app for their customer database. Databa
 
 #### My progress: 
 
+12.3.2021
+
+![Screenshot](./screenshots/1.customersList12.3.png)
+
+![Screenshot](./screenshots/2.search12.3.png)
+
+![Screenshot](./screenshots/3.trainingsList12.3.png)
