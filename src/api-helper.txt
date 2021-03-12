@@ -1,0 +1,40 @@
+{
+  "links" : [ {
+    "rel" : "customers",
+    "href" : "https://customerrest.herokuapp.com/api/customers"
+  }, {
+    "rel" : "trainings",
+    "href" : "https://customerrest.herokuapp.com/api/trainings"
+  }, {
+    "rel" : "profile",
+    "href" : "https://customerrest.herokuapp.com/api/profile"
+  } ]
+}
+
+Get customer’s trainings >> /customers/{id}/trainings endpoint
+This link is also provided in customer JSON object (See the previous image _links.trainings).
+
+Delete customer >> /customers/{id} endpoint with DELETE method.
+Note! Customer deletion deletes also all trainings from the customer.
+
+Add a new customer >> /customers endpoint
+with POST method and giving a new customer inside the request body as a JSON objectHeader:
+'Content-Type': 'application/json'
+
+Update existing customer >> /customers/{id} endpoint
+with PUT method and giving a updated customer inside the request body as a JSON objectHeader:
+'Content-Type': 'application/json'
+
+Add training and link it to customer >> /trainings endpoint
+with POST method and giving a new training with customer reference link inside the request
+body as a JSON object (see the example below).
+Header: 'Content-Type': 'application/json'
+Body: {    "date":  "2018-1-1" ,    "activity": "Spinning",    "duration": "50"   ,    "customer" :  "https://localhost:8080/api/customers/2" }
+
+Delete training >>  /trainings/{id} endpoint with DELETE method
+
+Get trainings (with customer info)
+Note! You can use this in training list page to show also customer.
+You can get all trainings with customer info by calling https://customerrest.herokuapp.com/gettrainings
+endpoint with GET method.  Date is the number of milliseconds passed since January 1, 1970, 00:00:00 GMT
+and you can user moment’s format()function to show it in some other date format.
