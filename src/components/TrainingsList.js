@@ -1,29 +1,27 @@
 import React, { useState, useEffect } from 'react';
+import {useDispatch} from "react-redux";
+import { connect } from 'react-redux';
 import { AgGridReact } from 'ag-grid-react';
 import moment from 'moment';
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.css';
+import { fetchAllTrainings } from "../redux/actions";
 
-const TrainingsList = () => {
-  useEffect(() => fetchData(), []);
-  const [trainings, setTrainings] = useState([]);
-  console.log("trainings: ", trainings);
+const TrainingsList = (props) => {
+  const dispatch = useDispatch();
 
-  const fetchData = () => {
-    fetch ('https://customerrest.herokuapp.com/gettrainings')
-      .then(response => response.json())
-      .then(data => setTrainings(data))
-      .catch(err => console.error(err));
-  }
+  useEffect(() => {
+    dispatch(fetchAllTrainings());
+  }, [dispatch]);
 
-  const processedData = trainings.map((training) => {
-      training.date = moment(training.date).format('LLL');
-      const customerName = training.customer.firstname + " " + training.customer.lastname;
-      training.customerName = customerName;
-      console.log(customerName);
-    }
-  );
+  // const processedData = trainings.map((training) => {
+  //     training.date = moment(training.date).format('LLL');
+  //     const customerName = training.customer.firstname + " " + training.customer.lastname;
+  //     training.customerName = customerName;
+  //     console.log(customerName);
+  //   }
+  // );
 
 // Training contains following attributes:
 // •id (long)
@@ -43,10 +41,14 @@ const TrainingsList = () => {
     <div className="ag-theme-material" style={{height:'700px', width:'70%', margin:'auto'}}>
       <AgGridReact
         columnDefs={columns}
-        rowData={trainings}>
+        rowData={props.trainings}>
       </AgGridReact>
     </div>
   )
 }
 
-export default TrainingsList;
+export default connect(
+  state => {
+    return { trainings: state.trainings.trainingData }
+  }, {}
+)(TrainingsList);

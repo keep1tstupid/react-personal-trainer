@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import {useDispatch} from "react-redux";
+import { connect } from 'react-redux';
+import { fetchAllCustomers } from "../redux/actions";
 import { AgGridReact } from 'ag-grid-react';
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.css';
 
 const CustomersList = (props) => {
-  useEffect(() => fetchData(), []);
-  const [customers, setCustomers] = useState([]);
-  console.log("customers: ", customers);
+  const dispatch = useDispatch();
 
-  const fetchData = () => {
-    fetch ('https://customerrest.herokuapp.com/api/customers')
-      .then(response => response.json())
-      .then(data => setCustomers(data.content))
-      .catch(err => console.error(err));
-  }
+  useEffect(() => {
+    dispatch(fetchAllCustomers());
+  }, [dispatch]);
 
   // Customer contains following attributes:
   // id (long)
@@ -40,10 +38,14 @@ const CustomersList = (props) => {
     <div className="ag-theme-material" style={{height:'700px', width:'70%', margin:'auto'}}>
       <AgGridReact
         columnDefs={columns}
-        rowData={customers}>
+        rowData={props.customers}>
       </AgGridReact>
     </div>
   )
 }
 
-export default CustomersList;
+export default connect(
+  state => {
+    return { customers: state.customers.customerData }
+  }, {}
+)(CustomersList);
