@@ -1,25 +1,12 @@
 import React, { useState } from 'react';
-import Button from '@material-ui/core/Button';
-import Box from '@material-ui/core/Box';
-import TextField from '@material-ui/core/TextField';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
+import { Modal, Form, Col, Button } from 'react-bootstrap';
+import {connect, useDispatch} from "react-redux";
+import { addNewCustomer } from "../redux/actions";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-function AddCustomer(props) {
-  // Customer contains following attributes:
-  // id (long)
-  // firstname (String)
-  // lastname (String)
-  // streetaddress (String)
-  // postcode (String)
-  // city (String)
-  // email (String)
-  // phone (String)
+const AddCustomer = (props) => {
 
-  const [open, setOpen] = useState(false);
-  const [customer, setCustomer] = useState({
+  const INITIAL_STATE = {
     firstname: '',
     lastname: '',
     streetaddress: '',
@@ -27,104 +14,134 @@ function AddCustomer(props) {
     city: '',
     email: '',
     phone: '',
-  });
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleSave = () => {
-    props.addCustomer(customer);
-    handleClose();
   }
 
-  const inputChanged = (event) => {
+  const [show, setShow] = useState(false);
+  const [customer, setCustomer] = useState(INITIAL_STATE);
+
+  const reload = () => window.location.reload();
+
+  const handleClose = () => {
+    setShow(false);
+    setCustomer(INITIAL_STATE);
+  }
+
+  const handleShow = () => setShow(true);
+
+  const handleChange = (event) => {
     setCustomer({...customer, [event.target.name]: event.target.value})
   }
 
-  return (
-    <div>
-      <Box p={2}>
-        <Button variant='outlined' color='primary' size='medium' onClick={handleClickOpen}>
-          Add new customer
-        </Button>
-      </Box>
+  const dispatch = useDispatch();
 
-      <Dialog open={open} onClose={handleClose} aria-labelledby='form-dialog-title'>
-        <DialogTitle id='form-dialog-title'>New Customer</DialogTitle>
-        <DialogContent>
-          <TextField
-            autoFocus
-            name='firstname'
-            value={customer.firstname}
-            onChange={inputChanged}
-            margin='dense'
-            label='First name'
-            fullWidth
-          />
-          <TextField
-            name='lastname'
-            value={customer.lastname}
-            onChange={inputChanged}
-            margin='dense'
-            label='Last name'
-            fullWidth
-          />
-          <TextField
-            name='streetaddress'
-            value={customer.streetaddress}
-            onChange={inputChanged}
-            margin='dense'
-            label='Address'
-            fullWidth
-          />
-          <TextField
-            name='postcode'
-            value={customer.postcode}
-            onChange={inputChanged}
-            margin='dense'
-            label='Postcode'
-            fullWidth
-          />
-          <TextField
-            name='city'
-            value={customer.city}
-            onChange={inputChanged}
-            margin='dense'
-            label='City'
-            fullWidth
-          />
-          <TextField
-            name='email'
-            value={customer.email}
-            onChange={inputChanged}
-            margin='dense'
-            label='E-mail'
-            fullWidth
-          />
-          <TextField
-            name='phone'
-            value={customer.phone}
-            onChange={inputChanged}
-            margin='dense'
-            label='Phone'
-            fullWidth
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color='primary'>
-            Cancel
+  const handleSave = () => {
+    console.log(JSON.stringify(customer));
+    dispatch(addNewCustomer(customer))
+      .then(handleClose());
+  }
+
+  return (
+    <>
+      <Button variant="primary" onClick={handleShow}>
+        Add New Customer
+      </Button>
+
+      <Modal
+        size='lg'
+        aria-labelledby='contained-modal-title-vcenter'
+        show={show}
+        onHide={handleClose}
+        onExit={reload}>
+        <Modal.Header closeButton>
+          <Modal.Title>New customer info: </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form.Row>
+            <Form.Group as={Col}>
+              <Form.Label> First name: </Form.Label>
+              <Form.Control
+                type='text'
+                name='firstname'
+                onChange={handleChange}
+                value={customer.firstname}
+                required
+              />
+            </Form.Group>
+            <Form.Group as={Col}>
+              <Form.Label> Last name: </Form.Label>
+              <Form.Control
+                type='text'
+                name='lastname'
+                onChange={handleChange}
+                value={customer.lastname}
+                required
+              />
+            </Form.Group>
+          </Form.Row>
+          <Form.Group>
+            <Form.Label> Street address: </Form.Label>
+            <Form.Control
+              type='text'
+              name='streetaddress'
+              onChange={handleChange}
+              value={customer.streetaddress}
+              required
+            />
+          </Form.Group>
+          <Form.Row>
+            <Form.Group as={Col}>
+              <Form.Label> Post code: </Form.Label>
+              <Form.Control
+                type='text'
+                name='postcode'
+                onChange={handleChange}
+                value={customer.postcode}
+                required
+              />
+            </Form.Group>
+            <Form.Group as={Col}>
+              <Form.Label> City: </Form.Label>
+              <Form.Control
+                type='text'
+                name='city'
+                onChange={handleChange}
+                value={customer.city}
+                required
+              />
+            </Form.Group>
+          </Form.Row>
+          <Form.Group>
+            <Form.Label> E-mail: </Form.Label>
+            <Form.Control
+              type='text'
+              name='email'
+              onChange={handleChange}
+              value={customer.email}
+              required
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label> Phone: </Form.Label>
+            <Form.Control
+              type='text'
+              name='phone'
+              onChange={handleChange}
+              value={customer.phone}
+              required
+            />
+          </Form.Group>
+
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
           </Button>
-          <Button onClick={handleSave} color='primary'>
-            Save
+          <Button variant="primary" onClick={handleSave}>
+            Save Changes
           </Button>
-        </DialogActions>
-      </Dialog>
-    </div>
+        </Modal.Footer>
+      </Modal>
+    </>
   );
 }
 

@@ -18,7 +18,8 @@ Delete customer >> /customers/{id} endpoint with DELETE method.
 Note! Customer deletion deletes also all trainings from the customer.
 
 Add a new customer >> /customers endpoint
-with POST method and giving a new customer inside the request body as a JSON objectHeader:
+with POST method and giving a new customer inside the request body as a JSON
+objectHeader:
 'Content-Type': 'application/json'
 
 Update existing customer >> /customers/{id} endpoint

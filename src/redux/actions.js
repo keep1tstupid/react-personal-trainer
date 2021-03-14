@@ -11,7 +11,10 @@ export const addFetchedCustomers = (data) => ({
   data: data,
 })
 
-
+export const addNewCustomer = (data) => ({
+  type: 'ADD_NEW_CUSTOMER',
+  data: data
+})
 
 
 

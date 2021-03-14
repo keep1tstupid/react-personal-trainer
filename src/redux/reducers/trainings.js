@@ -1,3 +1,6 @@
+import moment from 'moment';
+
+
 const INITIAL_STATE = {
   trainingData: [],
 };
@@ -6,7 +9,15 @@ const INITIAL_STATE = {
 const trainingReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case 'ADD_FETCHED_TRAININGS': {
-      return { ...state, trainingData: action.data };
+      const trainingData = action.data.map(item => {
+        return {
+          date: moment(item.date).format('LLL'),
+          duration: item.duration + ' min.',
+          activity: item.activity,
+          customerName: item.customer.firstname + " " + item.customer.lastname,
+        }
+      })
+      return { ...state, trainingData, };
     }
     // case 'ADD_FETCHED_ITEM_TYPES': {
     //   return { ...state, types: action.data };
