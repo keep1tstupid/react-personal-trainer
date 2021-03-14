@@ -1,16 +1,22 @@
 import React from 'react';
-import CustomersList from "../components/CustomersList";
+import { Container, Row } from 'react-bootstrap';
 import AppHeader from "../components/AppHeader";
 import AddCustomer from "../components/AddCustomer";
+import EditCustomer from "../components/EditCustomer";
+import DeleteCustomer from "../components/DeleteCustomer";
+import CustomersList from "../components/CustomersList";
 
 const CustomersView = () => {
 
   return (
     <div>
       <AppHeader />
-      <AddCustomer />
+      <Container className={'m-3'}>
+        <AddCustomer />
+        <EditCustomer />
+        <DeleteCustomer />
+      </Container>
       <CustomersList />
-
     </div>
   )
 }

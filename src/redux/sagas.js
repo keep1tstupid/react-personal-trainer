@@ -38,7 +38,7 @@ function* fetchAllTrainings() {
   try {
     const result = yield call(fetch, 'https://customerrest.herokuapp.com/gettrainings');
     const body = yield call([result, 'json']);
-    yield put(addFetchedTrainings(body.content));
+    yield put(addFetchedTrainings(body));
   } catch (err) {
     // Handle error
     // yield put(showErrorPopup('SNAP!'));

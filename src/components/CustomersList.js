@@ -32,11 +32,16 @@ const CustomersList = (props) => {
     {headerName: 'City', field: 'city', sortable: true, filter: true},
     {headerName: 'Email', field: 'email', sortable: true, filter: true},
     {headerName: 'Phone', field: 'phone', sortable: true, filter: true},
+    {headerName: 'Actions',  sortable: false, filter: false},
   ];
+
 
   return (
     <div className="ag-theme-material" style={{height:'700px', width:'70%', margin:'auto'}}>
       <AgGridReact
+        rowSelection='single'
+        pagination={true}
+        paginationAutoPageSize={true}
         columnDefs={columns}
         rowData={props.customers}>
       </AgGridReact>

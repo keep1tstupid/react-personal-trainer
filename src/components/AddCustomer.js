@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Modal, Form, Col, Button } from 'react-bootstrap';
+import { Container, Modal, Form, Col, Button } from 'react-bootstrap';
 import {connect, useDispatch} from "react-redux";
 import { addNewCustomer } from "../redux/actions";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -42,7 +42,7 @@ const AddCustomer = (props) => {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      <Button variant="primary" onClick={handleShow} className={'ml-3 mr-3'}>
         Add New Customer
       </Button>
 
