@@ -13,9 +13,18 @@ export const addFetchedCustomers = (data) => ({
 
 export const addNewCustomer = (data) => ({
   type: 'ADD_NEW_CUSTOMER',
-  data: data
+  data: data,
 })
 
+export const deleteCustomer = (data) => ({
+  type: 'DELETE_CUSTOMER',
+  data: data,
+})
+
+export const setSelectedCustomer = (data) => ({
+  type: 'SET_SELECTED',
+  data: data,
+})
 
 
 // actions for trainings

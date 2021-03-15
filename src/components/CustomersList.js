@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {useDispatch} from "react-redux";
 import { connect } from 'react-redux';
-import { fetchAllCustomers } from "../redux/actions";
+import { fetchAllCustomers, setSelectedCustomer } from "../redux/actions";
 import { AgGridReact } from 'ag-grid-react';
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
@@ -35,13 +35,25 @@ const CustomersList = (props) => {
     {headerName: 'Actions',  sortable: false, filter: false},
   ];
 
+  const [gridApi, setGridApi] = useState(null);
+  const onGridReady = (params) => {
+    setGridApi(params.api);
+    };
+
+  const onSelectionChanged = () => {
+    const selectedRow = gridApi.getSelectedRows()[0];
+    dispatch(setSelectedCustomer(selectedRow));
+    console.log('Selected: ', selectedRow);
+  };
 
   return (
     <div className="ag-theme-material" style={{height:'700px', width:'70%', margin:'auto'}}>
       <AgGridReact
         rowSelection='single'
+        onGridReady={onGridReady}
         pagination={true}
         paginationAutoPageSize={true}
+        onSelectionChanged={onSelectionChanged}
         columnDefs={columns}
         rowData={props.customers}>
       </AgGridReact>
@@ -51,6 +63,6 @@ const CustomersList = (props) => {
 
 export default connect(
   state => {
-    return { customers: state.customers.customerData }
+    return { customers: state.customers.customerData  }
   }, {}
 )(CustomersList);

@@ -6,13 +6,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const AddCustomer = (props) => {
   const INITIAL_STATE = {
-    firstname: 'props.firstname',
-    lastname: 'props.lastname',
-    streetaddress: '',
-    postcode: '',
-    city: '',
-    email: '',
-    phone: '',
+    id: props.id,
+    firstname: props.firstname,
+    lastname: props.lastname,
+    streetaddress: props.streetaddress,
+    postcode: props.postcode,
+    city: props.city,
+    email: props.email,
+    phone: props.phone,
   }
 
   const [customer, setCustomer] = useState(INITIAL_STATE);
@@ -21,7 +22,7 @@ const AddCustomer = (props) => {
 
   return (
     <>
-      <Button variant="light" className={'ml-3 mr-3'}>
+      <Button variant="light" className={'ml-3 mr-3'} disabled>
         Edit Selected Customer
       </Button>
 

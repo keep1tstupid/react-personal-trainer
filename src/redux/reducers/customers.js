@@ -1,6 +1,19 @@
+import moment from "moment";
+
 const INITIAL_STATE = {
   customerData: [],
+  selected: null,
 };
+
+// Customer contains following attributes:
+// id (long)
+// firstname (String)
+// lastname (String)
+// streetaddress (String)
+// postcode (String)
+// city (String)
+// email (String)
+// phone (String)
 
 const customerReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -12,6 +25,9 @@ const customerReducer = (state = INITIAL_STATE, action) => {
     // }
     default: {
       return state;
+    }
+    case 'SET_SELECTED': {
+      return { ...state, selected: action.data };
     }
   }
 }

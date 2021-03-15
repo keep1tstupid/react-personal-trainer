@@ -36,8 +36,8 @@ const AddCustomer = (props) => {
 
   const handleSave = () => {
     console.log(JSON.stringify(customer));
-    dispatch(addNewCustomer(customer))
-      .then(handleClose());
+    dispatch(addNewCustomer(customer));
+    handleClose();
   }
 
   return (
