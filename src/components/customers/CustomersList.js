@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {useDispatch} from "react-redux";
-import { connect } from 'react-redux';
+import { useDispatch, connect } from "react-redux";
 import { fetchAllCustomers, setSelectedCustomer } from "../../redux/actions";
 import { AgGridReact } from 'ag-grid-react';
 
@@ -13,16 +12,6 @@ const CustomersList = (props) => {
   useEffect(() => {
     dispatch(fetchAllCustomers());
   }, [dispatch]);
-
-  // Customer contains following attributes:
-  // id (long)
-  // firstname (String)
-  // lastname (String)
-  // streetaddress (String)
-  // postcode (String)
-  // city (String)
-  // email (String)
-  // phone (String)
 
   const columns = [
     {headerName: 'First name', field: 'firstname', sortable: true, filter: true},

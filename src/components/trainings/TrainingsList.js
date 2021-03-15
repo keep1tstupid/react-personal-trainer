@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import {useDispatch} from "react-redux";
-import { connect } from 'react-redux';
+import {useDispatch, connect} from "react-redux";
+import {fetchAllTrainings, setSelectedCustomer} from "../../redux/actions";
 import { AgGridReact } from 'ag-grid-react';
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.css';
-import { fetchAllTrainings } from "../../redux/actions";
+
 
 const TrainingsList = (props) => {
   const dispatch = useDispatch();
@@ -14,12 +14,16 @@ const TrainingsList = (props) => {
     dispatch(fetchAllTrainings());
   }, [dispatch]);
 
-// Training contains following attributes:
-// •id (long)
-// •date (Date)
-// •duration in minutes (int)
-// •activity (String)
-// •Customer (customer.id)
+  const [gridApi, setGridApi] = useState(null);
+  const onGridReady = (params) => {
+    setGridApi(params.api);
+  };
+
+  const onSelectionChanged = () => {
+    const selectedRow = gridApi.getSelectedRows()[0];
+    // dispatch(setSelectedTraining(selectedRow));
+    console.log('Selected: ', selectedRow);
+  };
 
   const columns = [
     {headerName: 'Date', field: 'date', sortable: true, filter: true},
@@ -31,11 +35,13 @@ const TrainingsList = (props) => {
   return (
     <div className="ag-theme-material" style={{height:'700px', width:'70%', margin:'auto'}}>
       <AgGridReact
+        rowSelection='single'
+        onGridReady={onGridReady}
+        pagination={true}
+        paginationAutoPageSize={true}
+        onSelectionChanged={onSelectionChanged}
         columnDefs={columns}
         rowData={props.trainings}>
-        {/*rowSelection='single'*/}
-        {/*pagination={true}*/}
-        {/*paginationAutoPageSize={true}*/}
       </AgGridReact>
     </div>
   )
