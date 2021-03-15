@@ -33,8 +33,6 @@ const EditCustomer = (props) => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const reload = () => window.location.reload();
-
   const [customer, setCustomer] = useState({});
 
   const handleChange = (event) => {
@@ -57,9 +55,8 @@ const EditCustomer = (props) => {
           aria-labelledby='contained-modal-title-vcenter'
           show={show}
           onHide={handleClose}
-          onExit={reload}
         >
-          <Modal.Header closeButton>
+          <Modal.Header>
             <Modal.Title>Edit customer info: </Modal.Title>
           </Modal.Header>
           <Modal.Body>
@@ -140,7 +137,7 @@ const EditCustomer = (props) => {
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
-              Close
+              Cancel
             </Button>
             <Button variant="primary" onClick={handleEdit}>
               Save Changes

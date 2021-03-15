@@ -50,9 +50,9 @@ const AddCustomer = (props) => {
         aria-labelledby='contained-modal-title-vcenter'
         show={show}
         onHide={handleClose}
-        onExit={reload}
+        onExit={handleClose}
       >
-        <Modal.Header closeButton>
+        <Modal.Header>
           <Modal.Title>New customer info: </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -133,7 +133,7 @@ const AddCustomer = (props) => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            Cancel
           </Button>
           <Button variant="primary" onClick={handleSave}>
             Save

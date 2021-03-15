@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {useDispatch, connect} from "react-redux";
-import {fetchAllTrainings, setSelectedCustomer} from "../../redux/actions";
+import {fetchAllTrainings, setSelectedTraining} from "../../redux/actions";
 import { AgGridReact } from 'ag-grid-react';
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
@@ -21,7 +21,7 @@ const TrainingsList = (props) => {
 
   const onSelectionChanged = () => {
     const selectedRow = gridApi.getSelectedRows()[0];
-    // dispatch(setSelectedTraining(selectedRow));
+    dispatch(setSelectedTraining(selectedRow));
     console.log('Selected: ', selectedRow);
   };
 

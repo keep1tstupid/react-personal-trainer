@@ -97,11 +97,21 @@ function* addNewTraining(action) {
     console.error(err);
   }
 }
-// edit training
 
 // delete training
-
-
+function* deleteTraining(action) {
+  try {
+    const url = "https://customerrest.herokuapp.com/api/trainings/" + action.data.id;
+    yield call(fetch, url, {
+      method: "DELETE",
+    });
+    yield put(fetchAllTrainingsAction());
+  } catch (err) {
+    // Handle error
+    // yield put(showErrorPopup('SNAP!'));
+    console.error(err);
+  }
+}
 
 // todo : MAIN SAGA
 export default function* mainSaga() {
@@ -109,7 +119,7 @@ export default function* mainSaga() {
   yield takeEvery('ADD_NEW_CUSTOMER', addNewCustomer);
   yield takeEvery('EDIT_CUSTOMER', editCustomer);
   yield takeEvery('DELETE_CUSTOMER', deleteCustomer);
-  yield takeEvery('ADD_NEW_TRAINING', addNewTraining);
-  // yield takeEvery('DELETE_ITEM', deleteItem);
   yield takeEvery('FETCH_ALL_TRAININGS', fetchAllTrainings);
+  yield takeEvery('ADD_NEW_TRAINING', addNewTraining);
+  yield takeEvery('DELETE_TRAINING', deleteTraining);
 }

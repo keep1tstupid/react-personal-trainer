@@ -30,9 +30,6 @@ const AddTraining = (props) => {
     setShow(false);
   }
 
-  const reload = () => window.location.reload();
-
-
   const handleChange = (event) => {
     setTraining({...training, [event.target.name]: event.target.value});
   }
@@ -62,9 +59,8 @@ const AddTraining = (props) => {
         aria-labelledby='contained-modal-title-vcenter'
         show={show}
         onHide={handleClose}
-        onExit={reload}
       >
-        <Modal.Header closeButton>
+        <Modal.Header>
           <Modal.Title> New training info: </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -121,7 +117,7 @@ const AddTraining = (props) => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            Cancel
           </Button>
           <Button variant="primary" onClick={handleSave}>
             Save

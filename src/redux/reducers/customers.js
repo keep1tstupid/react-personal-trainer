@@ -20,14 +20,11 @@ const customerReducer = (state = INITIAL_STATE, action) => {
     case 'ADD_FETCHED_CUSTOMERS': {
       return { ...state, customerData: action.data };
     }
-    // case 'ADD_FETCHED_ITEM_TYPES': {
-    //   return { ...state, types: action.data };
-    // }
+    case 'SET_SELECTED_CUSTOMER': {
+      return { ...state, selected: action.data };
+    }
     default: {
       return state;
-    }
-    case 'SET_SELECTED': {
-      return { ...state, selected: action.data };
     }
   }
 }

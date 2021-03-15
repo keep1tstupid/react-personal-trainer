@@ -21,7 +21,6 @@ const CustomersList = (props) => {
     {headerName: 'City', field: 'city', sortable: true, filter: true},
     {headerName: 'Email', field: 'email', sortable: true, filter: true},
     {headerName: 'Phone', field: 'phone', sortable: true, filter: true},
-    {headerName: 'Actions',  sortable: false, filter: false},
   ];
 
   const [gridApi, setGridApi] = useState(null);

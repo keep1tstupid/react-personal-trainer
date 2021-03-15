@@ -3,7 +3,7 @@ import moment from 'moment';
 
 const INITIAL_STATE = {
   trainingData: [],
-
+  selected: null,
 };
 
 
@@ -16,13 +16,14 @@ const trainingReducer = (state = INITIAL_STATE, action) => {
           duration: item.duration + ' min.',
           activity: item.activity,
           customerName: item.customer.firstname + " " + item.customer.lastname,
+          id: item.id,
         }
       })
       return { ...state, trainingData, };
     }
-    // case 'ADD_FETCHED_ITEM_TYPES': {
-    //   return { ...state, types: action.data };
-    // }
+    case 'SET_SELECTED_TRAINING': {
+      return { ...state, selected: action.data };
+    }
     default: {
       return state;
     }

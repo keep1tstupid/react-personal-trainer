@@ -27,7 +27,7 @@ export const editCustomer = (data) => ({
 })
 
 export const setSelectedCustomer = (data) => ({
-  type: 'SET_SELECTED',
+  type: 'SET_SELECTED_CUSTOMER',
   data: data,
 })
 
@@ -49,3 +49,13 @@ export const addNewTraining = (data) => ({
   data: data,
 })
 
+export const deleteTraining = (data) => ({
+  type: 'DELETE_TRAINING',
+  data: data,
+})
+
+
+export const setSelectedTraining = (data) => ({
+  type: 'SET_SELECTED_TRAINING',
+  data: data,
+})
