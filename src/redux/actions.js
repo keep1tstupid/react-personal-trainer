@@ -21,6 +21,11 @@ export const deleteCustomer = (data) => ({
   data: data,
 })
 
+export const editCustomer = (data) => ({
+  type: 'EDIT_CUSTOMER',
+  data: data,
+})
+
 export const setSelectedCustomer = (data) => ({
   type: 'SET_SELECTED',
   data: data,

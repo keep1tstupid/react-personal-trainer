@@ -5,7 +5,6 @@ import { addNewCustomer } from "../redux/actions";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const AddCustomer = (props) => {
-
   const INITIAL_STATE = {
     firstname: '',
     lastname: '',
@@ -51,7 +50,8 @@ const AddCustomer = (props) => {
         aria-labelledby='contained-modal-title-vcenter'
         show={show}
         onHide={handleClose}
-        onExit={reload}>
+        onExit={reload}
+      >
         <Modal.Header closeButton>
           <Modal.Title>New customer info: </Modal.Title>
         </Modal.Header>
@@ -130,7 +130,6 @@ const AddCustomer = (props) => {
               required
             />
           </Form.Group>
-
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

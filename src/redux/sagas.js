@@ -37,20 +37,20 @@ function* addNewCustomer(action) {
 }
 
 // saga to edit customer
-// function* editCustomer(action) {
-//   try {
-//     yield call(fetch, "https://customerrest.herokuapp.com/api/customers", {
-//       method: "POST",
-//       headers: {"Content-Type": "application/json"},
-//       body: JSON.stringify(action.data),
-//     });
-//     yield put(fetchAllCustomersAction());
-//   } catch (err) {
-//     // Handle error
-//     // yield put(showErrorPopup('SNAP!'));
-//     console.error(err);
-//   }
-// }
+function* editCustomer(action) {
+  try {
+    yield call(fetch, action.data.links[0].href, {
+      method: "PUT",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(action.data),
+    });
+    yield put(fetchAllCustomersAction());
+  } catch (err) {
+    // Handle error
+    // yield put(showErrorPopup('SNAP!'));
+    console.error(err);
+  }
+}
 
 // saga to delete customer
 function* deleteCustomer(action) {
@@ -90,11 +90,11 @@ function* fetchAllTrainings() {
 
 
 // todo : MAIN SAGA
-
 export default function* mainSaga() {
   yield takeEvery('FETCH_ALL_CUSTOMERS', fetchAllCustomers);
   yield takeEvery('ADD_NEW_CUSTOMER', addNewCustomer);
-  yield takeEvery('DELETE_CUSTOMER', deleteCustomer)
+  yield takeEvery('EDIT_CUSTOMER', editCustomer);
+  yield takeEvery('DELETE_CUSTOMER', deleteCustomer);
   // yield takeEvery('ADD_NEW_ITEM', addNewItem);
   // yield takeEvery('DELETE_ITEM', deleteItem);
   yield takeEvery('FETCH_ALL_TRAININGS', fetchAllTrainings);

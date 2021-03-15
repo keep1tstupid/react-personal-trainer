@@ -5,6 +5,7 @@ import { deleteCustomer } from "../redux/actions";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const DeleteCustomer = (props) => {
+  const [buttonAvailable, setButtonAvailable] = useState(false);
   useEffect(() => {
     if (props.selected !== null) {
       setButtonAvailable(true);
@@ -12,17 +13,17 @@ const DeleteCustomer = (props) => {
   }, [props]);
 
   const dispatch = useDispatch();
-  const [buttonAvailable, setButtonAvailable] = useState(false);
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
   const handleDelete = () => {
     console.log(props);
     dispatch(deleteCustomer(props.selected));
     handleClose();
   }
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const reload = () => window.location.reload();
 
   if (buttonAvailable) {
     return (
@@ -38,6 +39,7 @@ const DeleteCustomer = (props) => {
         <Modal
           show={show}
           aria-labelledby='contained-modal-title-vcenter'
+          onExit={reload}
         >
           <Modal.Header closeButton>
             <Modal.Title>Confirm your action:  </Modal.Title>
