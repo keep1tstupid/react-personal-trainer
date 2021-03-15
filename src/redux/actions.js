@@ -43,3 +43,9 @@ export const addFetchedTrainings = (data) => ({
   type: 'ADD_FETCHED_TRAININGS',
   data: data,
 })
+
+export const addNewTraining = (data) => ({
+  type: 'ADD_NEW_TRAINING',
+  data: data,
+})
+

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { Modal, Form, Col, Button } from 'react-bootstrap';
 import { connect, useDispatch } from "react-redux";
-import { editCustomer } from "../redux/actions";
+import { editCustomer } from "../../redux/actions";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const EditCustomer = (props) => {

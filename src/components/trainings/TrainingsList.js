@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 import {useDispatch} from "react-redux";
 import { connect } from 'react-redux';
 import { AgGridReact } from 'ag-grid-react';
-import moment from 'moment';
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.css';
-import { fetchAllTrainings } from "../redux/actions";
+import { fetchAllTrainings } from "../../redux/actions";
 
 const TrainingsList = (props) => {
   const dispatch = useDispatch();
@@ -14,14 +13,6 @@ const TrainingsList = (props) => {
   useEffect(() => {
     dispatch(fetchAllTrainings());
   }, [dispatch]);
-
-  // const processedData = trainings.map((training) => {
-  //     training.date = moment(training.date).format('LLL');
-  //     const customerName = training.customer.firstname + " " + training.customer.lastname;
-  //     training.customerName = customerName;
-  //     console.log(customerName);
-  //   }
-  // );
 
 // Training contains following attributes:
 // •id (long)
@@ -42,6 +33,9 @@ const TrainingsList = (props) => {
       <AgGridReact
         columnDefs={columns}
         rowData={props.trainings}>
+        {/*rowSelection='single'*/}
+        {/*pagination={true}*/}
+        {/*paginationAutoPageSize={true}*/}
       </AgGridReact>
     </div>
   )

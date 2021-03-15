@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {useDispatch} from "react-redux";
 import { connect } from 'react-redux';
-import { fetchAllCustomers, setSelectedCustomer } from "../redux/actions";
+import { fetchAllCustomers, setSelectedCustomer } from "../../redux/actions";
 import { AgGridReact } from 'ag-grid-react';
 
 import 'ag-grid-community/dist/styles/ag-grid.css';

@@ -3,6 +3,7 @@ import {
   addFetchedCustomers,
   addFetchedTrainings,
   fetchAllCustomers as fetchAllCustomersAction,
+  fetchAllTrainings as fetchAllTrainingsAction,
 }
   from './actions';
 
@@ -82,7 +83,20 @@ function* fetchAllTrainings() {
 }
 
 // add new training
-
+function* addNewTraining(action) {
+  try {
+    yield call(fetch, "https://customerrest.herokuapp.com/api/trainings", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(action.data),
+    });
+    yield put(fetchAllTrainingsAction());
+  } catch (err) {
+    // Handle error
+    // yield put(showErrorPopup('SNAP!'));
+    console.error(err);
+  }
+}
 // edit training
 
 // delete training
@@ -95,7 +109,7 @@ export default function* mainSaga() {
   yield takeEvery('ADD_NEW_CUSTOMER', addNewCustomer);
   yield takeEvery('EDIT_CUSTOMER', editCustomer);
   yield takeEvery('DELETE_CUSTOMER', deleteCustomer);
-  // yield takeEvery('ADD_NEW_ITEM', addNewItem);
+  yield takeEvery('ADD_NEW_TRAINING', addNewTraining);
   // yield takeEvery('DELETE_ITEM', deleteItem);
   yield takeEvery('FETCH_ALL_TRAININGS', fetchAllTrainings);
 }

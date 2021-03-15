@@ -3,6 +3,7 @@ import moment from 'moment';
 
 const INITIAL_STATE = {
   trainingData: [],
+
 };
 
 

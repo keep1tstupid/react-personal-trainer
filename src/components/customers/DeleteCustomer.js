@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import {connect, useDispatch} from "react-redux";
-import { deleteCustomer } from "../redux/actions";
+import { deleteCustomer } from "../../redux/actions";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const DeleteCustomer = (props) => {
