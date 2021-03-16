@@ -25,9 +25,12 @@ const AddTraining = (props) => {
   const [show, setShow] = useState(false);
   const [training, setTraining] = useState(INITIAL_STATE);
 
-  const handleShow = () => setShow(true);
+  const handleShow = () => {
+    setShow(true);
+  }
   const handleClose = () => {
     setShow(false);
+    setTraining(INITIAL_STATE);
   }
 
   const handleChange = (event) => {

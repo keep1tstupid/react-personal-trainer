@@ -22,7 +22,7 @@ const TrainingsCalendar = (props) => {
         defaultDate={new Date()}
         defaultView='month'
         events={props.events}
-        style={{ height: 500, width: '95%' }}
+        style={{ height: 700, width: '100%' }}
       />
     </Container>
   );

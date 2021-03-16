@@ -10,7 +10,13 @@ Personal Trainer company needs front end app for their customer database. Databa
 
 #### My progress: 
 
-15.3.2021
+##### 16.3.2021
+
+Calendar view added:
+![Screenshot](screenshots/upd16.3/1.Calendar16.3.png)
+
+##### 15.3.2021
+
 Buttons added. By default Edit and Delete buttons disabled:
 ![Screenshot](screenshots/upd15.3/1.CustomerListButtons15.3.png)
 
@@ -38,7 +44,7 @@ When some row selected button enabled:
 Delete training confirmation:
 ![Screenshot](screenshots/upd15.3/9.DeleteTraining15.3.png)
 
-12.3.2021
+##### 12.3.2021
 
 ![Screenshot](./screenshots/1.customersList12.3.png)
 
