@@ -15,6 +15,7 @@ const AppHeader = () => (
           <Nav.Link as={Link} to="/customersList"> Customers List </Nav.Link>
           <Nav.Link as={Link} to="/trainingsList"> Trainings List </Nav.Link>
           <Nav.Link as={Link} to="/calendar"> Calendar </Nav.Link>
+          <Nav.Link as={Link} to="/statistics"> Statistics </Nav.Link>
         </Nav>
       </Container>
     </Navbar>

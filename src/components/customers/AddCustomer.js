@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Container, Modal, Form, Col, Button } from 'react-bootstrap';
-import {connect, useDispatch} from "react-redux";
+import { Modal, Form, Col, Button } from 'react-bootstrap';
+import { useDispatch} from "react-redux";
 import { addNewCustomer } from "../../redux/actions";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -18,7 +18,7 @@ const AddCustomer = (props) => {
   const [show, setShow] = useState(false);
   const [customer, setCustomer] = useState(INITIAL_STATE);
 
-  const reload = () => window.location.reload();
+  // const reload = () => window.location.reload();
 
   const handleClose = () => {
     setShow(false);

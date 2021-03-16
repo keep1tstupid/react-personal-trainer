@@ -24,7 +24,7 @@ const DeleteCustomer = (props) => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const reload = () => window.location.reload();
+  // const reload = () => window.location.reload();
 
   if (buttonAvailable) {
     return (

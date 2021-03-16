@@ -1,5 +1,3 @@
-import moment from "moment";
-
 const INITIAL_STATE = {
   customerData: [],
   selected: null,

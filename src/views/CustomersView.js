@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import AppHeader from "../components/other/AppHeader";
 import AddCustomer from "../components/customers/AddCustomer";
 import EditCustomer from "../components/customers/EditCustomer";

@@ -1,12 +1,10 @@
 import React from "react";
 import AppHeader from "../components/other/AppHeader";
-import Calendar from "../components/other/TrainingsCalendar";
 
-const StatisticsView = (props) => {
+const StatisticsView = () => {
   return (
     <div>
       <AppHeader/>
-
     </div>
   )
 }
