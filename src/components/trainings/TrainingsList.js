@@ -22,7 +22,7 @@ const TrainingsList = (props) => {
   const onSelectionChanged = () => {
     const selectedRow = gridApi.getSelectedRows()[0];
     dispatch(setSelectedTraining(selectedRow));
-    console.log('Selected: ', selectedRow);
+    // console.log('Selected: ', selectedRow);
   };
 
   const columns = [

@@ -15,7 +15,7 @@ const DeleteCustomer = (props) => {
 
   const dispatch = useDispatch();
   const handleDelete = () => {
-    console.log(props);
+    // console.log(props);
     dispatch(deleteCustomer(props.selected));
     handleClose();
   }

@@ -8,7 +8,6 @@ const AddCustomer = (props) => {
   const INITIAL_STATE = {
     firstname: '',
     lastname: '',
-    streetaddress: '',
     postcode: '',
     city: '',
     email: '',
@@ -34,7 +33,7 @@ const AddCustomer = (props) => {
   const dispatch = useDispatch();
 
   const handleSave = () => {
-    console.log(JSON.stringify(customer));
+    // console.log(JSON.stringify(customer));
     dispatch(addNewCustomer(customer));
     handleClose();
   }

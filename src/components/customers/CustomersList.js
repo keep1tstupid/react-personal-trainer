@@ -31,7 +31,7 @@ const CustomersList = (props) => {
   const onSelectionChanged = () => {
     const selectedRow = gridApi.getSelectedRows()[0];
     dispatch(setSelectedCustomer(selectedRow));
-    console.log('Selected: ', selectedRow);
+    // console.log('Selected: ', selectedRow);
   };
 
   return (

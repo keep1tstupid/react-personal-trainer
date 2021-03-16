@@ -24,7 +24,7 @@ const EditCustomer = (props) => {
 
   const dispatch = useDispatch();
   const handleEdit = () => {
-    console.log(props);
+    // console.log(props);
     dispatch(editCustomer(customer));
     handleClose();
   }

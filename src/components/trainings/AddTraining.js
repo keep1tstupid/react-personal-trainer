@@ -38,15 +38,15 @@ const AddTraining = (props) => {
   }
 
   const handleCustomerChange = (event) => {
-    console.log(event);
+    // console.log(event);
     setTraining({
       ...training, customer: props.customers[event.target.value].links[0].href
       })
-    console.log(training.customer);
+    // console.log(training.customer);
   }
 
   const handleSave = () => {
-    console.log(JSON.stringify(training));
+    // console.log(JSON.stringify(training));
     dispatch(addNewTraining(training));
     handleClose();
   }
