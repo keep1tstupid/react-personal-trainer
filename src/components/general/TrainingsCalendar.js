@@ -1,20 +1,19 @@
+import React, {useEffect} from "react";
 import { Calendar, momentLocalizer  } from 'react-big-calendar'
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import moment from 'moment';
 import { Container } from "react-bootstrap";
 import { useDispatch, connect } from "react-redux";
 import { fetchAllTrainings } from "../../redux/actions";
-import React, {useEffect} from "react";
 
 
-const MyCalendar = (props) => {
+const TrainingsCalendar = (props) => {
   const localizer = momentLocalizer(moment);
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchAllTrainings());
   }, [dispatch]);
-
 
   return (
     <Container className="mt-3">
@@ -43,4 +42,4 @@ export default connect(
       })
     }
   }, {}
-)(MyCalendar);
+)(TrainingsCalendar);
