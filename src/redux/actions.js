@@ -54,7 +54,6 @@ export const deleteTraining = (data) => ({
   data: data,
 })
 
-
 export const setSelectedTraining = (data) => ({
   type: 'SET_SELECTED_TRAINING',
   data: data,
