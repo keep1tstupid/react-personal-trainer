@@ -46,13 +46,13 @@ const AddTraining = (props) => {
   }
 
   const handleSave = () => {
-    console.log(JSON.stringify(training));
+    //console.log(JSON.stringify(training));
     if (training.date === '' || training.duration === '' || training.activity === '' || training.customer === '') {
       console.log('NO!');
     } else {
       dispatch(addNewTraining(training));
     }
-    // handleClose();
+    handleClose();
   }
 
   return (
