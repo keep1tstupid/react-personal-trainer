@@ -15,6 +15,9 @@ Personal Trainer company needs front end app for their customer database. Databa
 Calendar view added:
 ![Screenshot](screenshots/upd16.3/1.Calendar16.3.png)
 
+Add training modal updated - time in datepicker and placeholder for the selector added: 
+![Screenshot](screenshots/upd16.3/2.AddTrainingTime16.3.png)
+
 ##### 15.3.2021
 
 Buttons added. By default Edit and Delete buttons disabled:
