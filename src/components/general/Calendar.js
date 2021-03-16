@@ -20,12 +20,10 @@ const MyCalendar = (props) => {
     <Container className="mt-3">
       <Calendar
         localizer={localizer}
-        views={['month','week','day']}
-        step={60}
-        showMultiDayTimes
+        defaultDate={new Date()}
+        defaultView='month'
         events={props.events}
-        startAccessor="start"
-        endAccessor="end"
+        style={{ height: 500, width: '95%' }}
       />
     </Container>
   );
@@ -37,9 +35,10 @@ export default connect(
       events: state.trainings.trainingData.map(item => {
         return {
           id: item.id,
-          title: item.activity,
+          title: item.activity + ' with ' + item.customerName,
           start: moment(item.date).toDate(),
           end: moment(item.date).clone().add(item.duration, 'minutes').toDate(),
+          allDay: false,
         }
       })
     }
