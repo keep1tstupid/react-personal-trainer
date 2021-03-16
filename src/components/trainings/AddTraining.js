@@ -46,9 +46,13 @@ const AddTraining = (props) => {
   }
 
   const handleSave = () => {
-    // console.log(JSON.stringify(training));
-    dispatch(addNewTraining(training));
-    handleClose();
+    console.log(JSON.stringify(training));
+    if (training.date === '' || training.duration === '' || training.activity === '' || training.customer === '') {
+      console.log('NO!');
+    } else {
+      dispatch(addNewTraining(training));
+    }
+    // handleClose();
   }
 
   return (
@@ -71,11 +75,12 @@ const AddTraining = (props) => {
             <Form.Group as={Col}>
               <Form.Label> Date: </Form.Label>
               <Form.Control
-                type='date'
+                type='datetime-local'
                 name='date'
                 onChange={handleChange}
                 value={training.date}
                 required
+                // isInvalid
               />
             </Form.Group>
             <Form.Group as={Col}>
@@ -106,9 +111,10 @@ const AddTraining = (props) => {
                 as="select"
                 name='customer'
                 onChange={handleCustomerChange}
-                // value={training.customerName}
+                //value={training.customerName}
                 required
               >
+                <option value='1' >Select</option>
                 {props.customers.map((customer, index) =>
                   <option key={index} value={index}>
                     {customer.firstname + ' ' + customer.lastname}

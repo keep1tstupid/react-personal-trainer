@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, connect } from "react-redux";
 import { fetchAllTrainings, setSelectedTraining } from "../../redux/actions";
 import { AgGridReact } from 'ag-grid-react';
+import moment from 'moment';
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.css';
@@ -41,7 +42,10 @@ const TrainingsList = (props) => {
         paginationAutoPageSize={true}
         onSelectionChanged={onSelectionChanged}
         columnDefs={columns}
-        rowData={props.trainings.map(item => ({ ...item, duration: item.duration + ' min.'}))}>
+        rowData={props.trainings.map(item => ({ ...item,
+          date: moment(item.date).format('LLL'),
+          duration: item.duration + ' min.'
+        }))}>
       </AgGridReact>
     </div>
   )

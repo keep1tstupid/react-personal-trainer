@@ -12,7 +12,8 @@ const trainingReducer = (state = INITIAL_STATE, action) => {
     case 'ADD_FETCHED_TRAININGS': {
       const trainingData = action.data.map(item => {
         return {
-          date: moment(item.date).format('LLL'),
+          // date: moment(item.date).format('LLL'),
+          date: item.date,
           duration: item.duration,
           activity: item.activity,
           customerName: item.customer.firstname + " " + item.customer.lastname,
