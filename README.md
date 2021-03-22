@@ -13,7 +13,7 @@ Personal Trainer company needs front end app for their customer database. Databa
 ##### 22.3.2021
 
 Statistics added:
-![Screenshot](screenshots/upd22.3/1.StatisticsView22.3.pnG)
+![Screenshot](screenshots/upd22.3/1.StatisticsView22.3.png)
 
 
 ##### 16.3.2021
