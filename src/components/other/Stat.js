@@ -42,8 +42,8 @@ const Stat = (props) => {
       <Jumbotron>
         <Container>
           <h3> Average time chart </h3>
-          <p> The chart below shows average time (in minutes) spent by our
-            customers for each type of activities. </p>
+          <p> The chart below shows the average time (in minutes)
+            spent by our customers on each type of activities. </p>
         </Container>
       </Jumbotron>
       <BarChart
