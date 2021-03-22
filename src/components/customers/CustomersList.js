@@ -25,6 +25,7 @@ const CustomersList = (props) => {
           resizable: true},
   ];
 
+
   const [gridApi, setGridApi] = useState(null);
   const onGridReady = (params) => {
     setGridApi(params.api);
