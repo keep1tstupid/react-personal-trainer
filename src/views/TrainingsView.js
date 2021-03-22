@@ -9,7 +9,7 @@ const TrainingsView = () => {
 
   return (
     <div>
-      <AppHeader/>
+      <AppHeader location={"/trainingsList"}/>
       <Container className={'m-3'}>
         <AddTraining/>
         <DeleteTraining/>
