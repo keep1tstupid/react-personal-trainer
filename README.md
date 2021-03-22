@@ -15,6 +15,7 @@ Personal Trainer company needs front end app for their customer database. Databa
 Statistics added:
 ![Screenshot](screenshots/upd22.3/1.StatisticsView22.3.png)
 
+Highlighting active view in the header fixed.
 
 ##### 16.3.2021
 
