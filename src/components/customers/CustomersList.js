@@ -14,13 +14,15 @@ const CustomersList = (props) => {
   }, [dispatch]);
 
   const columns = [
-    {headerName: 'First name', field: 'firstname', sortable: true, filter: true},
-    {headerName: 'Last name', field: 'lastname', sortable: true, filter: true},
-    {headerName: 'Street address', field: 'streetaddress', sortable: true, filter: true},
-    {headerName: 'Post code', field: 'postcode', sortable: true, filter: true},
-    {headerName: 'City', field: 'city', sortable: true, filter: true},
-    {headerName: 'Email', field: 'email', sortable: true, filter: true},
-    {headerName: 'Phone', field: 'phone', sortable: true, filter: true},
+        {headerName: 'First name', field: 'firstname', sortable: true, filter: true, width: 150,  resizable: true},
+        {headerName: 'Last name', field: 'lastname', sortable: true, filter: true, width: 150, resizable: true},
+        {headerName: 'Email', field: 'email', sortable: true, filter: true, width: 200, resizable: true},
+        {headerName: 'Phone', field: 'phone', sortable: true, filter: true, width: 150, resizable: true},
+        {headerName: 'City', field: 'city', sortable: true, filter: true, width: 150, resizable: true},
+        {headerName: 'Street address', field: 'streetaddress', sortable: true, filter: true, width: 200,
+            resizable: true},
+        {headerName: 'Post code', field: 'postcode', sortable: true, filter: true, width: 150,
+          resizable: true},
   ];
 
   const [gridApi, setGridApi] = useState(null);
@@ -35,7 +37,7 @@ const CustomersList = (props) => {
   };
 
   return (
-    <div className="ag-theme-material" style={{height:'700px', width:'70%', margin:'auto'}}>
+    <div className="ag-theme-material" style={{height:'700px', width:'80%', margin:'auto'}}>
       <AgGridReact
         rowSelection='single'
         onGridReady={onGridReady}
