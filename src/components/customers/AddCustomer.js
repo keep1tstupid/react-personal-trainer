@@ -31,21 +31,26 @@ const AddCustomer = (props) => {
     setCustomer({...customer, [event.target.name]: event.target.value})
   }
 
-  // const handleSubmit = () => {
-  //   // console.log(JSON.stringify(customer));
-  //   dispatch(addNewCustomer(customer));
-  //   handleClose();
-  // }
-
   const dispatch = useDispatch();
+  const handleSave = () => {
+    // console.log(JSON.stringify(customer));
+    dispatch(addNewCustomer(customer));
+    handleClose();
+  }
+
+  const [validated, setValidated] = useState(false);
+
+
   const handleSubmit = (event) => {
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
+      console.log("no");
+    } else {
+      handleSave();
     }
-    dispatch(addNewCustomer(customer));
-    handleClose();
+    setValidated(true);
   };
 
   return (
@@ -65,7 +70,7 @@ const AddCustomer = (props) => {
           <Modal.Title>New customer info: </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form onSubmit={handleSubmit}>
+          <Form onSubmit={handleSubmit} noValidate validated={validated}>
             <Form.Row>
               <Form.Group as={Col}>
                 <Form.Label> First name: </Form.Label>
@@ -76,6 +81,9 @@ const AddCustomer = (props) => {
                   value={customer.firstname}
                   required
                 />
+                <Form.Control.Feedback type="invalid">
+                  This field can't be empty.
+                </Form.Control.Feedback>
               </Form.Group>
               <Form.Group as={Col}>
                 <Form.Label> Last name: </Form.Label>
@@ -86,6 +94,9 @@ const AddCustomer = (props) => {
                   value={customer.lastname}
                   required
                 />
+                <Form.Control.Feedback type="invalid">
+                  This field can't be empty.
+                </Form.Control.Feedback>
               </Form.Group>
             </Form.Row>
             <Form.Group>
@@ -97,6 +108,9 @@ const AddCustomer = (props) => {
                 value={customer.streetaddress}
                 required
               />
+              <Form.Control.Feedback type="invalid">
+                This field can't be empty.
+              </Form.Control.Feedback>
             </Form.Group>
             <Form.Row>
               <Form.Group as={Col}>
@@ -108,6 +122,9 @@ const AddCustomer = (props) => {
                   value={customer.postcode}
                   required
                 />
+                <Form.Control.Feedback type="invalid">
+                  This field can't be empty.
+                </Form.Control.Feedback>
               </Form.Group>
               <Form.Group as={Col}>
                 <Form.Label> City: </Form.Label>
@@ -118,6 +135,9 @@ const AddCustomer = (props) => {
                   value={customer.city}
                   required
                 />
+                <Form.Control.Feedback type="invalid">
+                  This field can't be empty.
+                </Form.Control.Feedback>
               </Form.Group>
             </Form.Row>
             <Form.Group>
@@ -129,6 +149,9 @@ const AddCustomer = (props) => {
                 value={customer.email}
                 required
               />
+              <Form.Control.Feedback type="invalid">
+                This field can't be empty.
+              </Form.Control.Feedback>
             </Form.Group>
             <Form.Group>
               <Form.Label> Phone: </Form.Label>
@@ -139,6 +162,9 @@ const AddCustomer = (props) => {
                 value={customer.phone}
                 required
               />
+              <Form.Control.Feedback type="invalid">
+                This field can't be empty.
+              </Form.Control.Feedback>
             </Form.Group>
 
             <Button type='submit'> Save </Button> {' '}
