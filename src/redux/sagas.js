@@ -114,6 +114,7 @@ function* deleteTraining(action) {
 }
 
 // todo : MAIN SAGA
+// takeLatest?
 export default function* mainSaga() {
   yield takeEvery('FETCH_ALL_CUSTOMERS', fetchAllCustomers);
   yield takeEvery('ADD_NEW_CUSTOMER', addNewCustomer);

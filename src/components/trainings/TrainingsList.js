@@ -27,10 +27,10 @@ const TrainingsList = (props) => {
   };
 
   const columns = [
-    {headerName: 'Date', field: 'date', sortable: true, filter: true},
-    {headerName: 'Duration', field: 'duration', sortable: true, filter: true},
-    {headerName: 'Activity', field: 'activity', sortable: true, filter: true},
-    {headerName: 'Customer', field: 'customerName', sortable: true, filter: true},
+    {headerName: 'Date', field: 'date', sortable: true, filter: true, resizable: true},
+    {headerName: 'Duration', field: 'duration', sortable: true, filter: true, resizable: true},
+    {headerName: 'Activity', field: 'activity', sortable: true, filter: true, resizable: true},
+    {headerName: 'Customer', field: 'customerName', sortable: true, filter: true, resizable: true},
   ];
 
   return (

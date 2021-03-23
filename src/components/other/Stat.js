@@ -47,7 +47,7 @@ const Stat = (props) => {
         </Container>
       </Jumbotron>
       <BarChart
-        width={600}
+        width={800}
         height={500}
         data={data}
       >

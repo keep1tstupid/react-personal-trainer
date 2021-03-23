@@ -16,25 +16,8 @@ const AddTraining = (props) => {
     customer: 'none',
   }
 
-  // •date (Date)
-  // •duration in minutes (int)
-  // •activity (String)
-  // •Customer (customer.id) >> customer link
-
   const [show, setShow] = useState(false);
   const [training, setTraining] = useState(INITIAL_STATE);
-
-
-    // if (trainingData.date !== '' &&
-    //   trainingData.duration !== '' &&
-    //   trainingData.activity !== '' &&
-    //   trainingData.customer !== 'none') {
-    //   console.log('Fields are fine: ', trainingData);
-    //   setSaveButtonAvailable(true);
-    // } else {
-    //   console.log('Something missed: ', trainingData);
-    //   setSaveButtonAvailable(false);
-    // }
 
   const handleShow = () => {
     setShow(true);
