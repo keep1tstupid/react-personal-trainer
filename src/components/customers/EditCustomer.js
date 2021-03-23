@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const EditCustomer = (props) => {
   const [buttonAvailable, setButtonAvailable] = useState(false);
+  const [customer, setCustomer] = useState({});
   useEffect(() => {
     if (props.selected !== null) {
       setButtonAvailable(true);
@@ -22,22 +23,36 @@ const EditCustomer = (props) => {
     }
   }, [props]);
 
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const handleChange = (event) => {
+    setCustomer({...customer, [event.target.name]: event.target.value})
+  }
+
   const dispatch = useDispatch();
+
   const handleEdit = () => {
     // console.log(props);
     dispatch(editCustomer(customer));
     handleClose();
   }
 
-  const [show, setShow] = useState(false);
+  const [validated, setValidated] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  const [customer, setCustomer] = useState({});
-
-  const handleChange = (event) => {
-    setCustomer({...customer, [event.target.name]: event.target.value})
-  }
+  const handleSubmit = (event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+      // console.log("no");
+    } else {
+      handleEdit();
+    }
+    setValidated(true);
+  };
 
   if (buttonAvailable) {
     return (
@@ -60,89 +75,107 @@ const EditCustomer = (props) => {
             <Modal.Title>Edit customer info: </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Form.Row>
-              <Form.Group as={Col}>
-                <Form.Label> First name: </Form.Label>
+            <Form onSubmit={handleSubmit} noValidate validated={validated}>
+              <Form.Row>
+                <Form.Group as={Col}>
+                  <Form.Label> First name: </Form.Label>
+                  <Form.Control
+                    type='text'
+                    name='firstname'
+                    onChange={handleChange}
+                    value={customer.firstname}
+                    required
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    This field can't be empty.
+                  </Form.Control.Feedback>
+                </Form.Group>
+                <Form.Group as={Col}>
+                  <Form.Label> Last name: </Form.Label>
+                  <Form.Control
+                    type='text'
+                    name='lastname'
+                    onChange={handleChange}
+                    value={customer.lastname}
+                    required
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    This field can't be empty.
+                  </Form.Control.Feedback>
+                </Form.Group>
+              </Form.Row>
+              <Form.Group>
+                <Form.Label> Street address: </Form.Label>
                 <Form.Control
                   type='text'
-                  name='firstname'
+                  name='streetaddress'
                   onChange={handleChange}
-                  value={customer.firstname}
+                  value={customer.streetaddress}
                   required
                 />
+                <Form.Control.Feedback type="invalid">
+                  This field can't be empty.
+                </Form.Control.Feedback>
               </Form.Group>
-              <Form.Group as={Col}>
-                <Form.Label> Last name: </Form.Label>
+              <Form.Row>
+                <Form.Group as={Col}>
+                  <Form.Label> Post code: </Form.Label>
+                  <Form.Control
+                    type='text'
+                    name='postcode'
+                    onChange={handleChange}
+                    value={customer.postcode}
+                    required
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    This field can't be empty.
+                  </Form.Control.Feedback>
+                </Form.Group>
+                <Form.Group as={Col}>
+                  <Form.Label> City: </Form.Label>
+                  <Form.Control
+                    type='text'
+                    name='city'
+                    onChange={handleChange}
+                    value={customer.city}
+                    required
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    This field can't be empty.
+                  </Form.Control.Feedback>
+                </Form.Group>
+              </Form.Row>
+              <Form.Group>
+                <Form.Label> E-mail: </Form.Label>
                 <Form.Control
                   type='text'
-                  name='lastname'
+                  name='email'
                   onChange={handleChange}
-                  value={customer.lastname}
+                  value={customer.email}
                   required
                 />
+                <Form.Control.Feedback type="invalid">
+                  This field can't be empty.
+                </Form.Control.Feedback>
               </Form.Group>
-            </Form.Row>
-            <Form.Group>
-              <Form.Label> Street address: </Form.Label>
-              <Form.Control
-                type='text'
-                name='streetaddress'
-                onChange={handleChange}
-                value={customer.streetaddress}
-                required
-              />
-            </Form.Group>
-            <Form.Row>
-              <Form.Group as={Col}>
-                <Form.Label> Post code: </Form.Label>
+              <Form.Group>
+                <Form.Label> Phone: </Form.Label>
                 <Form.Control
                   type='text'
-                  name='postcode'
+                  name='phone'
                   onChange={handleChange}
-                  value={customer.postcode}
+                  value={customer.phone}
                   required
                 />
+                <Form.Control.Feedback type="invalid">
+                  This field can't be empty.
+                </Form.Control.Feedback>
               </Form.Group>
-              <Form.Group as={Col}>
-                <Form.Label> City: </Form.Label>
-                <Form.Control
-                  type='text'
-                  name='city'
-                  onChange={handleChange}
-                  value={customer.city}
-                  required
-                />
-              </Form.Group>
-            </Form.Row>
-            <Form.Group>
-              <Form.Label> E-mail: </Form.Label>
-              <Form.Control
-                type='text'
-                name='email'
-                onChange={handleChange}
-                value={customer.email}
-                required
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label> Phone: </Form.Label>
-              <Form.Control
-                type='text'
-                name='phone'
-                onChange={handleChange}
-                value={customer.phone}
-                required
-              />
-            </Form.Group>
+
+              <Button type='submit'> Update </Button> {' '}
+              <Button variant='outline-secondary' onClick={handleClose}> Cancel </Button>
+            </Form>
           </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Cancel
-            </Button>
-            <Button variant="primary" onClick={handleEdit}>
-              Save Changes
-            </Button>
-          </Modal.Footer>
         </Modal>
       </>
     );

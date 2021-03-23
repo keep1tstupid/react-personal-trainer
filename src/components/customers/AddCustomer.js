@@ -4,6 +4,7 @@ import { useDispatch} from "react-redux";
 import { addNewCustomer } from "../../redux/actions";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+// todo: figure out why data appears in url after saving customer
 
 const AddCustomer = (props) => {
   const INITIAL_STATE = {
@@ -40,13 +41,12 @@ const AddCustomer = (props) => {
 
   const [validated, setValidated] = useState(false);
 
-
   const handleSubmit = (event) => {
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
-      console.log("no");
+      // console.log("no");
     } else {
       handleSave();
     }
