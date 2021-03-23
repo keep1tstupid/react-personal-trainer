@@ -22,22 +22,8 @@ const AddTraining = (props) => {
   // •Customer (customer.id) >> customer link
 
   const [show, setShow] = useState(false);
-  const [saveButtonAvailable, setSaveButtonAvailable] = useState(false);
   const [training, setTraining] = useState(INITIAL_STATE);
 
-  const checkFields = (trainingData) => {
-    setTimeout(() => {
-      if (trainingData.date !== '' &&
-        trainingData.duration !== '' &&
-        trainingData.activity !== '' &&
-        trainingData.customer !== 'none') {
-        console.log('Fields are fine: ', trainingData);
-        setSaveButtonAvailable(true);
-      } else {
-        console.log('Something missed: ', trainingData);
-        setSaveButtonAvailable(false);
-      }
-    }, 1000)
 
     // if (trainingData.date !== '' &&
     //   trainingData.duration !== '' &&
@@ -49,21 +35,18 @@ const AddTraining = (props) => {
     //   console.log('Something missed: ', trainingData);
     //   setSaveButtonAvailable(false);
     // }
-  }
 
   const handleShow = () => {
     setShow(true);
-    // setSaveButtonAvailable(false);
   }
+
   const handleClose = () => {
     setShow(false);
     setTraining(INITIAL_STATE);
-    setSaveButtonAvailable(false);
   }
 
   const handleChange = (event) => {
     setTraining({...training, [event.target.name]: event.target.value});
-    checkFields(training);
   }
 
   const handleCustomerChange = (event) => {
@@ -75,18 +58,26 @@ const AddTraining = (props) => {
       });
     }
     //console.log(training.customer);
-    checkFields(training)
   }
 
   const handleSave = () => {
-    //console.log(JSON.stringify(training));
-    if (training.date === '' || training.duration === '' || training.activity === '' || training.customer === 'none') {
-      console.log('NO!');
-    } else {
-      dispatch(addNewTraining(training));
-    }
+    dispatch(addNewTraining(training));
     handleClose();
   }
+
+  const [validated, setValidated] = useState(false);
+
+  const handleSubmit = (event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+      console.log("no");
+    } else {
+      handleSave();
+    }
+    setValidated(true);
+  };
 
 
   return (
@@ -105,76 +96,97 @@ const AddTraining = (props) => {
           <Modal.Title> New training info: </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form.Row>
-            <Form.Group as={Col}>
-              <Form.Label> Date: </Form.Label>
-              <Form.Control
-                type='datetime-local'
-                name='date'
-                onChange={handleChange}
-                value={training.date}
-              />
-            </Form.Group>
-            <Form.Group as={Col}>
-              <Form.Label> Duration: </Form.Label>
-              <Form.Control
-                type='text'
-                name='duration'
-                onChange={handleChange}
-                value={training.duration}
-              />
-            </Form.Group>
-          </Form.Row>
-          <Form.Row>
-            <Form.Group as={Col}>
-              <Form.Label> Activity: </Form.Label>
-              <Form.Control
-                type='text'
-                name='activity'
-                onChange={handleChange}
-                value={training.activity}
-              />
-            </Form.Group>
-            <Form.Group as={Col}>
-              <Form.Label> Customer: </Form.Label>
-              <Form.Control
-                as="select"
-                name='customer'
-                onChange={handleCustomerChange}
-                //value={training.customerName}
-              >
-                <option value='none' >Select</option>
-                {props.customers.map((customer, index) =>
-                  <option key={index} value={index}>
-                    {customer.firstname + ' ' + customer.lastname}
-                  </option>) }
-              </Form.Control>
-            </Form.Group>
-          </Form.Row>
+          <Form onSubmit={handleSubmit} noValidate validated={validated}>
+            <Form.Row>
+              <Form.Group as={Col}>
+                <Form.Label> Date: </Form.Label>
+                <Form.Control
+                  type='datetime-local'
+                  name='date'
+                  onChange={handleChange}
+                  value={training.date}
+                  required
+                />
+                <Form.Control.Feedback type="invalid">
+                  This field can't be empty.
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group as={Col}>
+                <Form.Label> Duration: </Form.Label>
+                <Form.Control
+                  type='text'
+                  name='duration'
+                  onChange={handleChange}
+                  value={training.duration}
+                  required
+                />
+                <Form.Control.Feedback type="invalid">
+                  This field can't be empty.
+                </Form.Control.Feedback>
+              </Form.Group>
+            </Form.Row>
+            <Form.Row>
+              <Form.Group as={Col}>
+                <Form.Label> Activity: </Form.Label>
+                <Form.Control
+                  type='text'
+                  name='activity'
+                  onChange={handleChange}
+                  value={training.activity}
+                  required
+                />
+                <Form.Control.Feedback type="invalid">
+                  This field can't be empty.
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group as={Col}>
+                <Form.Label> Customer: </Form.Label>
+                <Form.Control
+                  as="select"
+                  name='customer'
+                  onChange={handleCustomerChange}
+                  required
+                  custom
+                  //value={training.customerName}
+                >
+                  <option disabled value="" selected hidden> Select </option>
+                  {props.customers.map((customer, index) =>
+                    <option key={index} value={index}>
+                      {customer.firstname + ' ' + customer.lastname}
+                    </option>) }
+                </Form.Control>
+                <Form.Control.Feedback type="invalid">
+                  This field can't be empty.
+                </Form.Control.Feedback>
+              </Form.Group>
+            </Form.Row>
 
+            <Button type='submit'> Save </Button> {' '}
+            <Button variant='outline-secondary' onClick={handleClose}> Cancel </Button>
+          </Form>
         </Modal.Body>
 
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Cancel
-          </Button>
+        {/*<Modal.Footer>*/}
+        {/*  <Button variant="secondary" onClick={handleClose}>*/}
+        {/*    Cancel*/}
+        {/*  </Button>*/}
 
-          { saveButtonAvailable &&
-          <Button variant="primary" onClick={handleSave}>
-            Save
-          </Button>
-          }
+        {/*  { saveButtonAvailable &&*/}
+        {/*  <Button variant="primary" onClick={handleSave}>*/}
+        {/*    Save*/}
+        {/*  </Button>*/}
+        {/*  }*/}
 
-          { saveButtonAvailable === false &&
-          <Button variant="primary" disabled>
-            Save
-          </Button>
-          }
+        {/*  { saveButtonAvailable === false &&*/}
+        {/*  <Button variant="primary" disabled>*/}
+        {/*    Save*/}
+        {/*  </Button>*/}
+        {/*  }*/}
 
-          {/*<Button variant="primary" onClick={handleSave}>*/}
-          {/*  Save*/}
-          {/*</Button>*/}
-        </Modal.Footer>
+        {/*  /!*<Button variant="primary" onClick={handleSave}>*!/*/}
+        {/*  /!*  Save*!/*/}
+        {/*  /!*</Button>*!/*/}
+        {/*</Modal.Footer>*/}
       </Modal>
     </>
   );

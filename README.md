@@ -10,6 +10,13 @@ Personal Trainer company needs front end app for their customer database. Databa
 
 #### My progress: 
 
+##### 23.3.2021
+
+Modals for adding Customer & Training updated - validation added, buttons replaced from modals footer into Form: 
+![Screenshot](screenshots/upd23.3/1.AddCustomerValidation23.3.png)
+
+![Screenshot](screenshots/upd23.3/2.AddTrainingValidation23.3.png)
+
 ##### 22.3.2021
 
 Statistics added:
