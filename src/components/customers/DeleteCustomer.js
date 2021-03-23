@@ -5,6 +5,8 @@ import { deleteCustomer } from "../../redux/actions";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+//todo: clear selected after deleting
+
 const DeleteCustomer = (props) => {
   const [buttonAvailable, setButtonAvailable] = useState(false);
   useEffect(() => {

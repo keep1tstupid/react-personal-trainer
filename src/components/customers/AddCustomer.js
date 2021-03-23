@@ -4,6 +4,7 @@ import { useDispatch} from "react-redux";
 import { addNewCustomer } from "../../redux/actions";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+
 const AddCustomer = (props) => {
   const INITIAL_STATE = {
     firstname: '',
@@ -30,13 +31,22 @@ const AddCustomer = (props) => {
     setCustomer({...customer, [event.target.name]: event.target.value})
   }
 
-  const dispatch = useDispatch();
+  // const handleSubmit = () => {
+  //   // console.log(JSON.stringify(customer));
+  //   dispatch(addNewCustomer(customer));
+  //   handleClose();
+  // }
 
-  const handleSave = () => {
-    // console.log(JSON.stringify(customer));
+  const dispatch = useDispatch();
+  const handleSubmit = (event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
     dispatch(addNewCustomer(customer));
     handleClose();
-  }
+  };
 
   return (
     <>
@@ -55,89 +65,86 @@ const AddCustomer = (props) => {
           <Modal.Title>New customer info: </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form.Row>
-            <Form.Group as={Col}>
-              <Form.Label> First name: </Form.Label>
+          <Form onSubmit={handleSubmit}>
+            <Form.Row>
+              <Form.Group as={Col}>
+                <Form.Label> First name: </Form.Label>
+                <Form.Control
+                  type='text'
+                  name='firstname'
+                  onChange={handleChange}
+                  value={customer.firstname}
+                  required
+                />
+              </Form.Group>
+              <Form.Group as={Col}>
+                <Form.Label> Last name: </Form.Label>
+                <Form.Control
+                  type='text'
+                  name='lastname'
+                  onChange={handleChange}
+                  value={customer.lastname}
+                  required
+                />
+              </Form.Group>
+            </Form.Row>
+            <Form.Group>
+              <Form.Label> Street address: </Form.Label>
               <Form.Control
                 type='text'
-                name='firstname'
+                name='streetaddress'
                 onChange={handleChange}
-                value={customer.firstname}
+                value={customer.streetaddress}
                 required
               />
             </Form.Group>
-            <Form.Group as={Col}>
-              <Form.Label> Last name: </Form.Label>
+            <Form.Row>
+              <Form.Group as={Col}>
+                <Form.Label> Post code: </Form.Label>
+                <Form.Control
+                  type='text'
+                  name='postcode'
+                  onChange={handleChange}
+                  value={customer.postcode}
+                  required
+                />
+              </Form.Group>
+              <Form.Group as={Col}>
+                <Form.Label> City: </Form.Label>
+                <Form.Control
+                  type='text'
+                  name='city'
+                  onChange={handleChange}
+                  value={customer.city}
+                  required
+                />
+              </Form.Group>
+            </Form.Row>
+            <Form.Group>
+              <Form.Label> E-mail: </Form.Label>
               <Form.Control
                 type='text'
-                name='lastname'
+                name='email'
                 onChange={handleChange}
-                value={customer.lastname}
+                value={customer.email}
                 required
               />
             </Form.Group>
-          </Form.Row>
-          <Form.Group>
-            <Form.Label> Street address: </Form.Label>
-            <Form.Control
-              type='text'
-              name='streetaddress'
-              onChange={handleChange}
-              value={customer.streetaddress}
-              required
-            />
-          </Form.Group>
-          <Form.Row>
-            <Form.Group as={Col}>
-              <Form.Label> Post code: </Form.Label>
+            <Form.Group>
+              <Form.Label> Phone: </Form.Label>
               <Form.Control
                 type='text'
-                name='postcode'
+                name='phone'
                 onChange={handleChange}
-                value={customer.postcode}
+                value={customer.phone}
                 required
               />
             </Form.Group>
-            <Form.Group as={Col}>
-              <Form.Label> City: </Form.Label>
-              <Form.Control
-                type='text'
-                name='city'
-                onChange={handleChange}
-                value={customer.city}
-                required
-              />
-            </Form.Group>
-          </Form.Row>
-          <Form.Group>
-            <Form.Label> E-mail: </Form.Label>
-            <Form.Control
-              type='text'
-              name='email'
-              onChange={handleChange}
-              value={customer.email}
-              required
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label> Phone: </Form.Label>
-            <Form.Control
-              type='text'
-              name='phone'
-              onChange={handleChange}
-              value={customer.phone}
-              required
-            />
-          </Form.Group>
+
+            <Button type='submit'> Save </Button> {' '}
+            <Button variant='outline-secondary' onClick={handleClose}> Cancel </Button>
+          </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Cancel
-          </Button>
-          <Button variant="primary" onClick={handleSave}>
-            Save
-          </Button>
-        </Modal.Footer>
       </Modal>
     </>
   );
