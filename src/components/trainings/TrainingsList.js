@@ -7,6 +7,7 @@ import moment from 'moment';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.css';
 
+//comment
 
 const TrainingsList = (props) => {
   const dispatch = useDispatch();
