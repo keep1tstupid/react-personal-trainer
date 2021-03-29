@@ -4,7 +4,7 @@ import { useDispatch} from "react-redux";
 import { addNewCustomer } from "../../redux/actions";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-// todo: figure out why data appears in url after saving customer if no reload
+// todo: figure out why data appears in url after saving customer if no reload?
 
 const AddCustomer = (props) => {
   const INITIAL_STATE = {
