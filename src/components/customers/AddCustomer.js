@@ -3,7 +3,6 @@ import { Modal, Form, Col, Button } from 'react-bootstrap';
 import { useDispatch} from "react-redux";
 import { addNewCustomer } from "../../redux/actions";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import * as ReactDOM from "react-dom";
 
 
 const AddCustomer = () => {
