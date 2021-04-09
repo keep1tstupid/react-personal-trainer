@@ -19,7 +19,6 @@ const Stat = (props) => {
       } else {
         acc[item.name] = [item.duration];
       }
-
       return acc;
     }, {})
 
@@ -34,8 +33,6 @@ const Stat = (props) => {
       acc.push({ name: key, avg: averages[key] })
       return acc;
     },[])
-
-  //console.log('data: ', data);
 
   return (
     <Container className={'m-3'}>

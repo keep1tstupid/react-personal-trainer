@@ -37,7 +37,6 @@ const EditCustomer = (props) => {
   const dispatch = useDispatch();
 
   const handleEdit = () => {
-    // console.log(props);
     dispatch(editCustomer(customer));
     handleClose();
   }
@@ -49,7 +48,6 @@ const EditCustomer = (props) => {
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
-      // console.log("no");
     } else {
       handleEdit();
     }

@@ -7,7 +7,7 @@ import {
 }
   from './actions';
 
-// todo : sagas for customers
+// sagas for customers
 
 function* fetchAllCustomers() {
   try {
@@ -68,7 +68,7 @@ function* deleteCustomer(action) {
 }
 
 
-// todo : sagas for trainings
+// sagas for trainings
 
 function* fetchAllTrainings() {
   try {
@@ -76,8 +76,6 @@ function* fetchAllTrainings() {
     const body = yield call([result, 'json']);
     yield put(addFetchedTrainings(body));
   } catch (err) {
-    // Handle error
-    // yield put(showErrorPopup('SNAP!'));
     console.error(err);
   }
 }
@@ -92,8 +90,6 @@ function* addNewTraining(action) {
     });
     yield put(fetchAllTrainingsAction());
   } catch (err) {
-    // Handle error
-    // yield put(showErrorPopup('SNAP!'));
     console.error(err);
   }
 }
@@ -107,14 +103,11 @@ function* deleteTraining(action) {
     });
     yield put(fetchAllTrainingsAction());
   } catch (err) {
-    // Handle error
-    // yield put(showErrorPopup('SNAP!'));
     console.error(err);
   }
 }
 
-// todo : MAIN SAGA
-// takeLatest?
+// MAIN SAGA
 export default function* mainSaga() {
   yield takeEvery('FETCH_ALL_CUSTOMERS', fetchAllCustomers);
   yield takeEvery('ADD_NEW_CUSTOMER', addNewCustomer);

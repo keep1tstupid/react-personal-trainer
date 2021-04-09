@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Modal, Form, Col, Button } from 'react-bootstrap';
-import {connect, useDispatch} from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { fetchAllCustomers, addNewTraining } from "../../redux/actions";
 
 const AddTraining = (props) => {
@@ -148,34 +148,10 @@ const AddTraining = (props) => {
             <Button variant='outline-secondary' onClick={handleClose}> Cancel </Button>
           </Form>
         </Modal.Body>
-
-        {/*<Modal.Footer>*/}
-        {/*  <Button variant="secondary" onClick={handleClose}>*/}
-        {/*    Cancel*/}
-        {/*  </Button>*/}
-
-        {/*  { saveButtonAvailable &&*/}
-        {/*  <Button variant="primary" onClick={handleSave}>*/}
-        {/*    Save*/}
-        {/*  </Button>*/}
-        {/*  }*/}
-
-        {/*  { saveButtonAvailable === false &&*/}
-        {/*  <Button variant="primary" disabled>*/}
-        {/*    Save*/}
-        {/*  </Button>*/}
-        {/*  }*/}
-
-        {/*  /!*<Button variant="primary" onClick={handleSave}>*!/*/}
-        {/*  /!*  Save*!/*/}
-        {/*  /!*</Button>*!/*/}
-        {/*</Modal.Footer>*/}
       </Modal>
     </>
   );
 }
-
-// export default AddTraining;
 
 export default connect(
   state => {

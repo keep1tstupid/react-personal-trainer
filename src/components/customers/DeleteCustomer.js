@@ -16,7 +16,6 @@ const DeleteCustomer = (props) => {
 
   const dispatch = useDispatch();
   const handleDelete = () => {
-    // console.log(props);
     dispatch(deleteCustomer(props.selected));
     handleClose();
     setButtonAvailable(false);
@@ -26,7 +25,6 @@ const DeleteCustomer = (props) => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  // const reload = () => window.location.reload();
 
   if (buttonAvailable) {
     return (

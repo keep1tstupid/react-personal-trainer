@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 // todo: figure out why data appears in url after saving customer if no reload?
 
-const AddCustomer = (props) => {
+const AddCustomer = () => {
   const INITIAL_STATE = {
     firstname: '',
     lastname: '',
@@ -34,7 +34,6 @@ const AddCustomer = (props) => {
 
   const dispatch = useDispatch();
   const handleSave = () => {
-    // console.log(JSON.stringify(customer));
     dispatch(addNewCustomer(customer));
     handleClose();
   }
@@ -46,7 +45,6 @@ const AddCustomer = (props) => {
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
-      // console.log("no");
     } else {
       handleSave();
     }
