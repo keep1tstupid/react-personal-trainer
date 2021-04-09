@@ -3,8 +3,8 @@ import { Modal, Form, Col, Button } from 'react-bootstrap';
 import { useDispatch} from "react-redux";
 import { addNewCustomer } from "../../redux/actions";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import * as ReactDOM from "react-dom";
 
-// todo: figure out why data appears in url after saving customer if no reload?
 
 const AddCustomer = () => {
   const INITIAL_STATE = {
@@ -16,14 +16,13 @@ const AddCustomer = () => {
     phone: '',
   }
 
-  const [show, setShow] = useState(false);
   const [customer, setCustomer] = useState(INITIAL_STATE);
-
-  // const reload = () => window.location.reload();
+  const [show, setShow] = useState(false);
 
   const handleClose = () => {
     setShow(false);
-    //setCustomer(INITIAL_STATE);
+    setValidated(false);
+    setCustomer(INITIAL_STATE);
   }
 
   const handleShow = () => setShow(true);
@@ -41,6 +40,7 @@ const AddCustomer = () => {
   const [validated, setValidated] = useState(false);
 
   const handleSubmit = (event) => {
+    event.preventDefault();
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
@@ -68,13 +68,18 @@ const AddCustomer = () => {
           <Modal.Title>New customer info: </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form onSubmit={handleSubmit} noValidate validated={validated}>
+          <Form
+            onSubmit={handleSubmit}
+            noValidate
+            validated={validated}
+          >
             <Form.Row>
               <Form.Group as={Col}>
                 <Form.Label> First name: </Form.Label>
                 <Form.Control
                   type='text'
                   name='firstname'
+                  placeholder="First name"
                   onChange={handleChange}
                   value={customer.firstname}
                   required

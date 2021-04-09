@@ -25,6 +25,7 @@ const AddTraining = (props) => {
 
   const handleClose = () => {
     setShow(false);
+    setValidated(false);
     setTraining(INITIAL_STATE);
   }
 
@@ -55,7 +56,6 @@ const AddTraining = (props) => {
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
-      console.log("no");
     } else {
       handleSave();
     }
@@ -130,9 +130,10 @@ const AddTraining = (props) => {
                   onChange={handleCustomerChange}
                   required
                   custom
+                  defaultValue={''}
                   //value={training.customerName}
                 >
-                  <option disabled value="" selected hidden> Select </option>
+                  <option value='' disabled hidden> Select </option>
                   {props.customers.map((customer, index) =>
                     <option key={index} value={index}>
                       {customer.firstname + ' ' + customer.lastname}
