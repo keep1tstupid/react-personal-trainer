@@ -10,6 +10,12 @@ Personal Trainer company needs front end app for their customer database. Databa
 
 #### My progress: 
 
+##### 21.1.2021 
+update: 
+* date-time picker is working for Chrome only. 
+* app is available [here](https://react-personal-trainer-app.herokuapp.com/)
+
+
 ##### 23.3.2021
 
 Modals for adding Customer & Training updated - validation added, buttons replaced from modals footer into Form: 
